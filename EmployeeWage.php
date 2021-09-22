@@ -1,10 +1,16 @@
 <?php
 echo "Welcome to employee Wage Prob\n";
 $attendance = rand(0,1);
+$EmployeeWage =0;
+$wage_per_hr =20;
 if ($attendance == 0) {
-    echo "Employee is ABSENT\n";
+    echo "\n Employee is ABSENT2";
+    $workingHr = 0;
 }
 else {
-    echo "Employee is PRESENT\n";
+    echo "\nEmployee is PRESENT";
+    $workingHr = 8;
 }
+$EmployeeWage = $wage_per_hr * $workingHr;
+echo ("\nTotal Wage : " .$EmployeeWage);
 ?>
