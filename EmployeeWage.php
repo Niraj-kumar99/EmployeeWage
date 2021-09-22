@@ -1,74 +1,39 @@
 <?php
-$attendance = rand(0,1);
-$employeeType = rand(0,1);
+
 class Employee {
-    public $wage_per_hr =20;
-    function attendance($attendance) {
-        if ($attendance == 0) {
-            echo "Employee is ABSENT\n";
-        }
-        else {
-            echo "Employee is PRESENT\n";
-        }
-    }
-
-    //Calculating daily wage
-    function calculateDailyWage($attendance , $employeeType) {
-        //$wage_per_hr =20;
-        if ($attendance == 1) {
-            if ($employeeType == 0) {
-                $type = "Part Time Employee";
-                $workingHr = 4;
-            }
-            else {
-                $type = "Full Time Employee";
-                $workingHr = 8;
-            }
-        }
-        else {
-            $type = "Employee is ABSENT";
-            $workingHr = 0;
-        }
-        $EmployeeWage = $this->wage_per_hr * $workingHr;
-        echo "Daily wage .........\n";
-        echo "Employee Type : ".$type ."\nEmployee Daily Wage is :".$EmployeeWage;
-    }
-
-    //Calculating daily wage per month
-    function calculateMonthlyWage($attendance , $employeeType) {
-        $max_days = 20;
+    
+    function calculateWage($companyName , $wage_per_hr , $max_days) {
         $EmployeeMonthlyWage = 0;
-        if($attendance == 1){
-            for($i=0 ; $i<$max_days; $i++) {
-                switch($employeeType) {
-                    case 0:
-                        $type = "Part Time Employee";
-                        $workingHr = 4;
-                        break;
-                    case 1:
-                        $type = "Full Time Employee";
-                        $workingHr = 8;
-                        break;
-                    default:
-                        $workingHr = 0;
-                    }
-                    $EmployeeWage = $this->wage_per_hr * $workingHr;
-                    $EmployeeMonthlyWage += $EmployeeWage;
-                }
-                echo "\nMonthly wage ......";
-                echo ("\nMonthly wage of : ".$type ."\nMonthly Wage is : ".$EmployeeMonthlyWage);
+        $workingHr = 0;
+
+        for($i=1 ; $i<$max_days; $i++) {
+            $employeeType = rand(0,1);
+            switch($employeeType) {
+                case 0:
+                    $type = "Part Time Employee";
+                    $empWorkingHr = 4;
+                    break;
+                case 1:
+                    $type = "Full Time Employee";
+                    $empWorkingHr = 8;
+                    break;
             }
-            else {
-                echo "\nMonthly wage ......";
-                echo "\nEmployee is Absent";
-            }
+
+            //Calculating wage till this condition.
+            if($workingHr >= 100 || $i == 20) {
+                break;
+        }
+            $EmployeeWage = $wage_per_hr * $empWorkingHr;
+            $EmployeeMonthlyWage += $EmployeeWage;
+            $workingHr += $empWorkingHr;
         }
 
+        //Array
+        $companyDetails = array("Company Name" =>$companyName ,"Total working days"=>$i ,
+                                "Total working Hours"=>$workingHr ,"Salary Per Month"=>$EmployeeMonthlyWage);
+        print_r($companyDetails);
+    }
 }
-
 $employee = new Employee();
-$employee->attendance($attendance);
-$employee->calculateDailyWage($attendance , $employeeType);
-$employee->calculateMonthlyWage($attendance , $employeeType);
-
+$employee->calculateWage("Tata" , "60" , "20");
 ?>
