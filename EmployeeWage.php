@@ -36,4 +36,8 @@ class Employee {
 }
 $employee = new Employee();
 $employee->calculateWage("Tata" , "60" , "20");
+$employee->calculateWage("Asus" , "50" , "30");
+$employee->calculateWage("Dell" , "80" , "22");
+$employee->calculateWage("Wipro" , "65" , "25");
+$employee->calculateWage("Acenture" , "75" , "18");
 ?>
