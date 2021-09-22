@@ -11,8 +11,29 @@ class Employee {
         }
     }
 
+    function calculateWage($attendance , $employeeType) {
+        $wage_per_hr =20;
+        if ($attendance == 1) {
+            if ($employeeType == 0) {
+                $type = "Part Time Employee";
+                $workingHr = 4;
+            }
+            else {
+                $type = "Full Time Employee";
+                $workingHr = 8;
+            }
+        }
+        else {
+            $type = "Employee is ABSENT";
+            $workingHr = 0;
+        }
+        $EmployeeWage = $wage_per_hr * $workingHr;
+        echo "Employee Type : ".$type ."\nEmployee Wage is :".$EmployeeWage;
+    }
+
 }
 $employee = new Employee();
 $employee->attendance($attendance);
+$employee->calculateWage($attendance , $employeeType);
 
 ?>
